@@ -4,6 +4,24 @@ import path from 'path';
 const filePath = 'predictionData.json';
 const absolutePath = path.join(__dirname, '..', 'data', filePath);
 
+// Way Number One - simple one
+if (typeof window !== 'undefined') {
+  var random = window.crypto && window.crypto.getRandomValues.bind(crypto);
+}
+
+export function getRandom(range) {
+  var nb;
+  if (random) {
+    const array = new Uint32Array(10);
+    random(array);
+    nb = array[0];
+  } else {
+    nb = (Math.random() * 0x100000000) | 0;
+  }
+  return Math.abs(nb % range) + 1;
+}
+
+// Way Number Two - bit complex one
 export function getRandomArbitrary(min, max, data) {
   const shouldProb = 1 / (max - min + 1);
   const probability = calculateProbability(data.occurrence, data.data.length);

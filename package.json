@@ -6,6 +6,7 @@
   "scripts": {
     "start": "tsc && node dist/index.js",
     "lint": "eslint . --ext .ts",
+    "ptest": "tsc && node dist/packageTest.js",
     "test": "tsc && node dist/test.js"
   },
   "author": "",
